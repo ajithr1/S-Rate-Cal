@@ -2,6 +2,7 @@ package com.ajith.silverprice;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AlertDialogLayout;
+import androidx.cardview.widget.CardView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
     private static final String TAG = "ajju";
     EditText old_weight, new_weight, kooli;
     TextView price, new_w, old_w, kooli_value, total;
+    private CardView cardView;
 
     ProgressDialog p;
 
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
         old_w = findViewById(R.id.old_w);
         kooli_value = findViewById(R.id.wage);
         total = findViewById(R.id.total);
+        cardView = findViewById(R.id.card);
 
         p = new ProgressDialog(this);
     }
@@ -86,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
         if (price1 == 0){
             return null;
         }else {
+            cardView.setVisibility(View.VISIBLE);
             double total = ((price1/10) * (new_wt - (68%old))) + wage;
             return String.valueOf(total);
         }

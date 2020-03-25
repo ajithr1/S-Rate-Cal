@@ -84,6 +84,7 @@
         android:background="@android:drawable/editbox_background"
         android:ems="3"
         android:inputType="numberDecimal"
+        android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/old_wt"
         app:layout_constraintStart_toEndOf="@+id/new_wt"
@@ -110,6 +111,7 @@
         android:background="@android:drawable/editbox_background"
         android:ems="3"
         android:inputType="numberDecimal"
+        android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/kooli"
@@ -132,12 +134,14 @@
         app:layout_constraintTop_toBottomOf="@+id/kooli" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:cardBackgroundColor="#671E19"
         app:cardCornerRadius="16dp"
         app:cardElevation="16dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
