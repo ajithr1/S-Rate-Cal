@@ -107,6 +107,10 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
 
     @Override
     public void applyTexts(String username) {
-        price.setText(username);
+        if (username.equals("")){
+            price.setText("0");
+        }else {
+            price.setText(username);
+        }
     }
 }
