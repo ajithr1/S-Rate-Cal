@@ -7,6 +7,8 @@
     <string name="total">ధర</string>
     <string name="enter_current_silver_rate">Enter Current Silver rate</string>
     <string name="tarugu">తరుగు</string>
+    <string name="_0">0</string>
+    <string name="go">go</string>
 
     <string-array name="values">
         <item>200</item>
