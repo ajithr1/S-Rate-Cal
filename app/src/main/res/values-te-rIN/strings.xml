@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">SilverPrice</string>
-    <string name="silver_price">వెండి ధర</string>
-    <string name="new_weight">కొత్త పట్టిలు</string>
-    <string name="wages">కూలీ</string>
-    <string name="old_weight">పాత పట్టిలు</string>
-    <string name="total">ధర</string>
-</resources>
