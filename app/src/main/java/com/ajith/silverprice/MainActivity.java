@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
     private CardView cardView;
 
     float cost;
+    int percent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,10 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         float highScore = sharedPref.getFloat("ajith", 1);
+        int percentage = sharedPref.getInt("percentage", 68);
 
         cost = highScore;
+        percent = percentage;
 
         price.setText(String.valueOf(highScore));
     }
@@ -54,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putFloat("ajith", cost);
+        editor.putFloat("price", cost);
+        editor.putInt("percentage", percent);
         editor.apply();
     }
 
@@ -99,9 +103,7 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
             return null;
         }else {
             cardView.setVisibility(View.VISIBLE);
-            double a = 0.68 * old;
-
-            //String.format("%.2f", a)
+            double a = 0.01 * percent * old;
 
             left.setText(String.format("%.2f", a));
             pay.setText(String.format("%.2f", (new_wt - a)));
@@ -114,22 +116,22 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
 
     public void insert(View view) {
         openDialog();
-
     }
 
     public void openDialog() {
-        EditDialog exampleDialog = new EditDialog();
+        EditDialog exampleDialog = new EditDialog(price.getText().toString(), percent);
         exampleDialog.show(getSupportFragmentManager(), "example dialog");
     }
 
     @Override
-    public void applyTexts(String username) {
+    public void applyTexts(String username, String per) {
 
         if (username.equals("")){
             price.setText("0");
         }else {
             price.setText(username);
 
+            percent = Integer.parseInt(per);
             cost = Float.parseFloat(username);
         }
     }

@@ -9,6 +9,7 @@
     <string name="tarugu">తరుగు</string>
     <string name="_0">0</string>
     <string name="go">go</string>
+    <string name="enter_percent">Enter percent</string>
 
     <string-array name="values">
         <item>200</item>

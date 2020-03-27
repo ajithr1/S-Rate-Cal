@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -18,8 +19,16 @@ import java.util.Objects;
 
 public class EditDialog extends AppCompatDialogFragment {
 
-    private EditText editTextUsername;
+    private EditText editTextUsername, editTextPercent;
     private ExampleDialogListener listener;
+
+    private String rate;
+    private int percent;
+
+    EditDialog(String rate, int percent) {
+        this.rate = rate;
+        this.percent = percent;
+    }
 
     @NonNull
     @Override
@@ -28,6 +37,8 @@ public class EditDialog extends AppCompatDialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         @SuppressLint("InflateParams") View view = inflater.inflate(R.layout.layout_dialog, null);
+
+        Log.d("ajju", "onCreateDialog: "+rate +"  " + percent);
 
         builder.setView(view)
                 .setTitle("Silver rate")
@@ -41,11 +52,16 @@ public class EditDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String username = editTextUsername.getText().toString();
-                        listener.applyTexts(username);
+                        String percent = editTextPercent.getText().toString();
+                        listener.applyTexts(username, percent);
                     }
                 });
 
         editTextUsername = view.findViewById(R.id.edit_username);
+        editTextPercent = view.findViewById(R.id.edit_percent);
+
+        editTextUsername.setText(rate);
+        editTextPercent.setText(String.valueOf(percent));
 
         return builder.create();
     }
@@ -62,6 +78,6 @@ public class EditDialog extends AppCompatDialogFragment {
     }
 
     public interface ExampleDialogListener {
-        void applyTexts(String username);
+        void applyTexts(String username, String percent);
     }
 }
