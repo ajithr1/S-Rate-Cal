@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
     EditText old_weight, new_weight, kooli;
     TextView price, pay, left, reduced, wage, total;
     private CardView cardView;
+
+    float cost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,21 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
         total = findViewById(R.id.total);
         cardView = findViewById(R.id.card);
 
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        float highScore = sharedPref.getFloat("ajith", 1);
+
+        price.setText(String.valueOf(highScore));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putFloat("ajith", cost);
+        editor.apply();
     }
 
     public void calculate(View view) {
@@ -103,10 +122,13 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
 
     @Override
     public void applyTexts(String username) {
+
         if (username.equals("")){
             price.setText("0");
         }else {
             price.setText(username);
+
+            cost = Float.parseFloat(username);
         }
     }
 }
