@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         float highScore = sharedPref.getFloat("ajith", 1);
 
+        cost = highScore;
+
         price.setText(String.valueOf(highScore));
     }
 
