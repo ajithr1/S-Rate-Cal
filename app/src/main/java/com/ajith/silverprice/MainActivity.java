@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
 
     public void calculate(View view) {
 
-        float w_n=0, w_o=0;
-        float k=0;
+        float w_n, w_o;
+        float k;
 
         if (!TextUtils.isEmpty(new_weight.getText())){
             w_n = Float.parseFloat(new_weight.getText().toString());
@@ -72,22 +72,22 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
 
     String findValue(float new_wt, float wage1, float old){
 
-        double price1 = Integer.parseInt(price.getText().toString());
+        float price1 = Float.parseFloat(price.getText().toString());
 
         if (price1 == 0){
             return null;
         }else {
-
-            Toast.makeText(this, String.valueOf((new_wt - (0.68 * old))), Toast.LENGTH_SHORT).show();
-
             cardView.setVisibility(View.VISIBLE);
             double a = 0.68 * old;
-            left.setText(String.valueOf(a));
-            pay.setText(String.valueOf(new_wt - a));
-            reduced.setText(String.valueOf(old - a));
-            wage.setText(String.valueOf(wage1));
+
+            //String.format("%.2f", a)
+
+            left.setText(String.format("%.2f", a));
+            pay.setText(String.format("%.2f", (new_wt - a)));
+            reduced.setText(String.format("%.2f", (old - a)));
+            wage.setText(String.format("%.2f", wage1));
             double total = ((price1/10) * (new_wt - a)) + wage1;
-            return String.valueOf(total);
+            return String.format("%.2f", total);
         }
     }
 
