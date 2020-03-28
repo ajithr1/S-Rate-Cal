@@ -3,11 +3,11 @@ package com.ajith.silverprice;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
         cardView = findViewById(R.id.card);
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        float highScore = sharedPref.getFloat("ajith", 1);
+        float highScore = sharedPref.getFloat("price", 1);
         int percentage = sharedPref.getInt("percentage", 68);
 
         cost = highScore;
@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
         editor.putFloat("price", cost);
         editor.putInt("percentage", percent);
         editor.apply();
+
+        cardView.setVisibility(View.INVISIBLE);
     }
 
     public void calculate(View view) {
@@ -91,8 +93,6 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
         }else {
             new_weight.setError("Please enter");
         }
-
-        //p.hide();
     }
 
     String findValue(float new_wt, float wage1, float old){
@@ -130,6 +130,8 @@ public class MainActivity extends AppCompatActivity implements EditDialog.Exampl
             price.setText("0");
         }else {
             price.setText(username);
+
+            Log.d(TAG, "applyTexts: "+username+" & "+per);
 
             percent = Integer.parseInt(per);
             cost = Float.parseFloat(username);

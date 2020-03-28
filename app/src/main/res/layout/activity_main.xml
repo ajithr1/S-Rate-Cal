@@ -144,7 +144,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:cardBackgroundColor="#671E19"
         app:cardCornerRadius="16dp"
         app:cardElevation="16dp"
@@ -156,8 +156,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#671E19"
-            tools:visibility="visible">
+            android:background="#671E19">
 
             <TextView
                 android:id="@+id/n1"

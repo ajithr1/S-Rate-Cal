@@ -52,13 +52,16 @@ public class EditDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         String username = editTextUsername.getText().toString();
-                        String percent = editTextPercent.getText().toString();
-                        listener.applyTexts(username, percent);
+                        String per = editTextPercent.getText().toString();
+                        Log.d("ajju", "setPositiveButton: "+username+" & "+per);
+                        listener.applyTexts(username, per);
                     }
                 });
 
         editTextUsername = view.findViewById(R.id.edit_username);
         editTextPercent = view.findViewById(R.id.edit_percent);
+
+        Log.d("ajju", "fragment: "+rate+" & "+percent);
 
         editTextUsername.setText(rate);
         editTextPercent.setText(String.valueOf(percent));
